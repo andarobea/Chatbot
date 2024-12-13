@@ -64,27 +64,52 @@ userInput.addEventListener("keypress", function (event) {
     }
 });
 
-function sendMessage() {
-    const message = userInput.value.trim();
-    if (message) {
-        appendMessage(`You: ${message}`, "user");
-        saveMessage(`You: ${message}`, "user");
+async function sendMessage() {
+    const msg = userInput.value.trim();
+    if (msg) {
+        appendMessage(`You: ${msg}`, "user");
+        saveMessage(`You: ${msg}`, "user");
 
         // If it's the first message in this chat, update the chat name
         if (chatSessions[currentChatIndex].length === 1) { 
             const currentChatItem = chatList.children[currentChatIndex];
-            currentChatItem.textContent = message; // Update chat name
+            currentChatItem.textContent = msg; // Update chat name
         }
 
         userInput.value = "";
 
-        setTimeout(() => {
-            const botResponse = tokenizeMessage(message);
+        try {
+            const botResponse = await fetchBotResponse(msg); // Call Flask backend
             appendMessage(`Bot: ${botResponse}`, "bot");
             saveMessage(`Bot: ${botResponse}`, "bot");
-        }, 1000);
+        } catch (error) {
+            appendMessage("Bot: Sorry, I couldn't process your request.", "bot");
+        }
     }
 }
+
+async function fetchBotResponse(userMessage) {
+    try {
+        const response = await fetch("/predict", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ message: userMessage })
+        });
+
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+        return data.answer; // Assumes Flask sends response in { answer: "response text" } format
+    } catch (error) {
+        console.error("Error fetching bot response:", error);
+        throw error;
+    }
+}
+
 function appendMessage(text, sender) {
     const messageElement = document.createElement("p");
     messageElement.textContent = text;
