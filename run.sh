@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Activate the virtual environment
-source venv/bin/activate
+. venv/bin/activate
 
 # Run the training script
 echo "Starting training..."
