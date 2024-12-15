@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot Interface</title>
-    <link rel="stylesheet" href="../static/style.css"
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
     <div class="chat-container">
@@ -16,6 +16,9 @@
         
         <!-- Welcome Screen -->
         <div class="welcome-screen" id="welcome-screen">
+            <div class="top-right">
+                <button id="theme-toggle-welcome">Light Mode</button>
+            </div>
             <h1>Welcome to the Chatbot</h1>
             <button id="start-chat-btn">Begin New Chat</button>
         </div>
@@ -24,6 +27,9 @@
         <div class="chat-interface" id="chat-interface" style="display: none;">
             <div class="chat-header">
                 <h2>Chat Session</h2>
+                <div class="top-right">
+                    <button id="theme-toggle-chat">Light Mode</button>
+                </div>
             </div>
             <div id="chat-messages" class="chat-messages"></div>
             <div class="chat-input">

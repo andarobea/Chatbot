@@ -7,9 +7,58 @@ const chatMessages = document.getElementById("chat-messages");
 const chatList = document.getElementById("chat-list");
 const userInput = document.getElementById("user-input");
 const sendBtn = document.getElementById("send-btn");
+const themeToggleWelcome = document.getElementById("theme-toggle-welcome");
+const themeToggleChat = document.getElementById("theme-toggle-chat");
+const body = document.body;
 
 let chatSessions = [];
 let currentChatIndex = null;
+
+// Save chatSessions to localStorage
+function saveChatsToLocalStorage() {
+    localStorage.setItem("chatSessions", JSON.stringify(chatSessions));
+}
+
+// Load chatSessions from localStorage
+function loadChatsFromLocalStorage() {
+    const savedChats = localStorage.getItem("chatSessions");
+    if (savedChats) {
+        chatSessions = JSON.parse(savedChats);
+    } else {
+        chatSessions = []; // Default empty array if nothing is saved
+    }
+}
+
+// On page load, load saved chats
+window.addEventListener("DOMContentLoaded", () => {
+    loadChatsFromLocalStorage();
+
+    if (chatSessions.length > 0) {
+        sidebar.style.display = "flex";
+        chatInterface.style.display = "flex";
+        welcomeScreen.style.display = "none";
+        rebuildChatList();
+        
+        // Load the last active chat if saved, otherwise load the first chat
+        const lastActiveChatIndex = localStorage.getItem("activeChatIndex");
+        const indexToLoad = lastActiveChatIndex !== null ? parseInt(lastActiveChatIndex) : 0;
+        loadChat(indexToLoad);
+    }
+});
+
+// Function to toggle theme
+function toggleTheme() {
+    body.classList.toggle("light-mode");
+    const isLightMode = body.classList.contains("light-mode");
+
+    // Update button text
+    themeToggleWelcome.textContent = isLightMode ? "Dark Mode" : "Light Mode";
+    themeToggleChat.textContent = isLightMode ? "Dark Mode" : "Light Mode";
+}
+
+// Add event listeners to both toggle buttons
+themeToggleWelcome.addEventListener("click", toggleTheme);
+themeToggleChat.addEventListener("click", toggleTheme);
 
 // Start a new chat
 startChatBtn.addEventListener("click", () => {
@@ -23,22 +72,51 @@ newChatBtn.addEventListener("click", createNewChat);
 
 // Create a new chat
 function createNewChat() {
-    const newChatIndex = chatSessions.length;
-    chatSessions.push([]);
+    chatSessions.push([]); // Add a new empty chat session
+    rebuildChatList(); // Rebuild the chat list to ensure proper indexing
+    saveChatsToLocalStorage();
+    loadChat(chatSessions.length - 1); // Load the newly created chat
+}
 
-    const chatSession = document.createElement("div");
-    chatSession.textContent = `Chat ${newChatIndex + 1}`;
-    chatSession.classList.add("chat-session"); // Ensure class is added
-    chatSession.addEventListener("click", () => loadChat(newChatIndex));
+// Rebuild the chat list after deletion
+function rebuildChatList() {
+    chatList.innerHTML = ""; // Clear the current chat list UI
 
-    chatList.appendChild(chatSession);
-    loadChat(newChatIndex);
+    chatSessions.forEach((session, index) => {
+        const chatSession = document.createElement("div");
+        chatSession.classList.add("chat-session");
+
+        // Determine chat name: first message or default name
+        const chatName = document.createElement("span");
+        if (session.length > 0) {
+            chatName.textContent = session[0].text.replace(/^You: /, ""); // First message without "You: "
+        } else {
+            chatName.textContent = `Chat ${index + 1}`; // Default name if no messages
+        }
+
+        // Add delete button
+        const deleteBtn = document.createElement("button");
+        deleteBtn.innerHTML = "&#128465;"; // Trash bin icon
+        deleteBtn.classList.add("delete-btn");
+        deleteBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            deleteChat(index);
+        });
+
+        // Append elements and add click event
+        chatSession.appendChild(chatName);
+        chatSession.appendChild(deleteBtn);
+        chatSession.addEventListener("click", () => loadChat(index));
+
+        chatList.appendChild(chatSession);
+    });
 }
 
 // Load a chat
 function loadChat(index) {
     currentChatIndex = index;
     chatMessages.innerHTML = ""; // Clear current messages
+    localStorage.setItem("activeChatIndex", index); // Save active chat index
 
     // Remove 'active-chat' from all chat sessions
     document.querySelectorAll("#chat-list .chat-session").forEach((chat) => {
@@ -51,6 +129,34 @@ function loadChat(index) {
 
     // Load messages
     chatSessions[index].forEach((msg) => appendMessage(msg.text, msg.sender));
+}
+
+// Delete a chat
+function deleteChat(index) {
+    const wasActiveChatDeleted = (currentChatIndex === index); // Check if the active chat is being deleted
+    const previousChatIndex = currentChatIndex; // Save the active chat index before deletion
+
+    chatSessions.splice(index, 1); // Remove chat session from array
+
+    if (chatSessions.length === 0) {
+        // Show welcome screen if all chats are deleted
+        sidebar.style.display = "none";
+        chatInterface.style.display = "none";
+        welcomeScreen.style.display = "flex";
+        localStorage.removeItem("activeChatIndex"); // Clear active chat index
+    } else {
+        rebuildChatList(); // Rebuild the chat list
+        
+        if (wasActiveChatDeleted) {
+            // If the active chat was deleted, load the closest remaining chat
+            const newIndex = previousChatIndex > 0 ? previousChatIndex - 1 : 0;
+            loadChat(newIndex);
+        } else {
+            // Reload the previously active chat
+            loadChat(previousChatIndex > index ? previousChatIndex - 1 : previousChatIndex);
+        }
+    }
+    saveChatsToLocalStorage();
 }
 
 // Send a message
@@ -72,9 +178,11 @@ async function sendMessage() {
 
         // If it's the first message in this chat, update the chat name
         if (chatSessions[currentChatIndex].length === 1) { 
-            const currentChatItem = chatList.children[currentChatIndex];
-            currentChatItem.textContent = msg; // Update chat name
+            const chatNameElement = chatList.children[currentChatIndex].querySelector("span");
+            chatNameElement.textContent = msg;
         }
+
+        saveChatsToLocalStorage();
 
         userInput.value = "";
 
@@ -120,8 +228,4 @@ function appendMessage(text, sender) {
 
 function saveMessage(text, sender) {
     chatSessions[currentChatIndex].push({ text, sender });
-}
-
-function tokenizeMessage(message) {
-    return message.split(" ").join(" | "); // Placeholder processing
 }
