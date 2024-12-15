@@ -13,6 +13,7 @@ const body = document.body;
 
 let chatSessions = [];
 let currentChatIndex = null;
+sendBtn.textContent = "";
 
 // Save chatSessions to localStorage
 function saveChatsToLocalStorage() {
@@ -129,6 +130,9 @@ function loadChat(index) {
 
     // Load messages
     chatSessions[index].forEach((msg) => appendMessage(msg.text, msg.sender));
+
+    // Set input position based on chat content
+    setInputPosition();
 }
 
 // Delete a chat
@@ -182,7 +186,7 @@ async function sendMessage() {
             chatNameElement.textContent = msg;
         }
 
-        saveChatsToLocalStorage();
+        setInputPosition();
 
         userInput.value = "";
 
@@ -190,6 +194,7 @@ async function sendMessage() {
             const botResponse = await fetchBotResponse(msg); // Call Flask backend
             appendMessage(`Bot: ${botResponse}`, "bot");
             saveMessage(`Bot: ${botResponse}`, "bot");
+            saveChatsToLocalStorage();
         } catch (error) {
             appendMessage("Bot: Sorry, I couldn't process your request.", "bot");
         }
@@ -228,4 +233,20 @@ function appendMessage(text, sender) {
 
 function saveMessage(text, sender) {
     chatSessions[currentChatIndex].push({ text, sender });
+}
+
+function setInputPosition() {
+    const inputBar = document.querySelector(".chat-input");
+    const currentChat = chatSessions[currentChatIndex];
+
+    if (currentChat && currentChat.length > 0) {
+        // If the chat has messages, move the bar to the bottom
+        inputBar.style.top = "auto";
+        inputBar.style.bottom = "10px";
+    } else {
+        // If no messages, place the bar in the middle
+        inputBar.style.top = "50%";
+        inputBar.style.bottom = "auto";
+        inputBar.style.transform = "translate(-50%, -50%)";
+    }
 }
