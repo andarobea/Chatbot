@@ -28,7 +28,6 @@ def chat():
     data = request.get_json()
     user_message = data.get('message', '')
 
-    # Get response from chatbot
     response = chatbot.get_response(user_message)
 
     return jsonify({"response": str(response)})
