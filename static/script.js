@@ -32,6 +32,14 @@ function loadChatsFromLocalStorage() {
 
 // On page load, load saved chats
 window.addEventListener("DOMContentLoaded", () => {
+    // Save the current theme
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light-mode") {
+        body.classList.add("light-mode");
+        themeToggleWelcome.textContent = "Dark Mode";
+        themeToggleChat.textContent = "Dark Mode";
+    }
+
     loadChatsFromLocalStorage();
 
     if (chatSessions.length > 0) {
@@ -47,7 +55,7 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Function to toggle theme
+// Toggle theme
 function toggleTheme() {
     body.classList.toggle("light-mode");
     const isLightMode = body.classList.contains("light-mode");
@@ -55,6 +63,13 @@ function toggleTheme() {
     // Update button text
     themeToggleWelcome.textContent = isLightMode ? "Dark Mode" : "Light Mode";
     themeToggleChat.textContent = isLightMode ? "Dark Mode" : "Light Mode";
+
+    // Save the theme to localStorage
+    if (isLightMode) {
+        localStorage.setItem("theme", "light-mode");
+    } else {
+        localStorage.removeItem("theme");
+    }
 }
 
 // Add event listeners to both toggle buttons
@@ -90,7 +105,11 @@ function rebuildChatList() {
         // Determine chat name: first message or default name
         const chatName = document.createElement("span");
         if (session.length > 0) {
-            chatName.textContent = session[0].text.replace(/^You: /, ""); // First message without "You: "
+            // Truncate the first message to 22 characters with ellipsis if needed
+            const firstMessage = session[0].text.replace(/^You: /, ""); // Remove "You: " prefix
+            chatName.textContent = firstMessage.length > 22 
+                ? firstMessage.substring(0, 22) + "..." 
+                : firstMessage;
         } else {
             chatName.textContent = `Chat ${index + 1}`; // Default name if no messages
         }
@@ -181,9 +200,8 @@ async function sendMessage() {
         saveMessage(`You: ${msg}`, "user");
 
         // If it's the first message in this chat, update the chat name
-        if (chatSessions[currentChatIndex].length === 1) { 
-            const chatNameElement = chatList.children[currentChatIndex].querySelector("span");
-            chatNameElement.textContent = msg;
+        if (chatSessions[currentChatIndex].length === 1) {
+            rebuildChatList();
         }
 
         setInputPosition();
