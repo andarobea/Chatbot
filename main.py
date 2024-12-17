@@ -6,7 +6,7 @@ from chatterbot.trainers import ChatterBotCorpusTrainer, ListTrainer
 app = Flask(__name__)
 
 # Initialize chatbot
-chatbot = ChatBot('Alltius')
+chatbot = ChatBot('Sam')
 
 # Train chatbot with English corpus
 corpus_trainer = ChatterBotCorpusTrainer(chatbot)
@@ -35,3 +35,5 @@ def chat():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+# example of chatbot implemented with the chatterbot library
