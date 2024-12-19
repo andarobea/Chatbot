@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Create and activate a virtual environment
-python3 -m venv venv
+python3.10 -m venv venv
 . venv/bin/activate
 
 # Install required Python packages

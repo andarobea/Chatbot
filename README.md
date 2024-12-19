@@ -27,7 +27,7 @@ Pentru a folosi interfata dedicata accesati:
 
     http://127.0.0.1:5000
 
-In final rulati ctrl + z din terminal pentru a inchide sesiunea si:
+In final rulati ctrl + z / ctrl + c din terminal pentru a inchide sesiunea si:
 
     fuser -n tcp -k 5000
 
