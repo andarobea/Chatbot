@@ -50,7 +50,7 @@ window.addEventListener("DOMContentLoaded", () => {
         
         // Load the last active chat if saved, otherwise load the first chat
         const lastActiveChatIndex = localStorage.getItem("activeChatIndex");
-        const indexToLoad = lastActiveChatIndex !== null ? parseInt(lastActiveChatIndex) : 0;
+        const indexToLoad = (lastActiveChatIndex !== null ? parseInt(lastActiveChatIndex) : 0);
         loadChat(indexToLoad);
     }
 });
@@ -172,7 +172,7 @@ function deleteChat(index) {
         
         if (wasActiveChatDeleted) {
             // If the active chat was deleted, load the closest remaining chat
-            const newIndex = previousChatIndex > 0 ? previousChatIndex - 1 : 0;
+            const newIndex = (previousChatIndex > 0 ? previousChatIndex - 1 : 0);
             loadChat(newIndex);
         } else {
             // Reload the previously active chat
