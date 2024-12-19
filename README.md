@@ -194,8 +194,8 @@ Light mode
 ![Light mode](readme-images/light-mode.png)
 
 ## Contributii Individuale
-Adi: interfata chat-ului (index.html, style.css, script.js) + openai.py<br>
-Anda: backend chatbot (train.py, nltk_utils.py, model.py, intents.json, chatterbot.py, chat.py, app.py) + scripturi (install.sh, run.sh)
+Adi: interfata chat-ului (index.html, style.css, script.js) + openai.py, app.py<br>
+Anda: backend chatbot (train.py, nltk_utils.py, model.py, intents.json, chatterbot.py, chat.py) + scripturi (install.sh, run.sh)
 
 ## Dificultati intampinate
 Adi:<br>
@@ -206,6 +206,7 @@ Rezolvare:<br>
 
 <br>
 Anda:<br>
+
 - crearea modelului de antrenament
 - intelegerea functionalitatii tokenizerii si stemmingului
 - modul de functionare al unui FNN
