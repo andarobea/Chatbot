@@ -1,7 +1,7 @@
 import numpy as np
 import nltk
 
-nltk.download('punkt')
+nltk.download('punkt')  # Ensure punkt is downloaded
 nltk.download('punkt_tab')  # Ensure punkt_tab is also downloaded
 
 from nltk.stem.porter import PorterStemmer
