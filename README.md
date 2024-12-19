@@ -74,7 +74,7 @@ Pentru implementarea efectiva am avut nevoie de cateva fisiere:
 ### Chatterbot
     chatterbot.py este un model de chatbot care utilizeaza o biblioteca existenta folosita in construirea si antrenarea de chatbots. Una din incercarile nereusite de constructie.
 
-### Chatbot cu API key catre OPENAI
+### OPENAI
     openai.py construieste chatbot-ul legandu-l printr-o cheie API la un model cunoscut de chatbot, in acest caz gpt-3.5-turbo. Un astfel de chatbot ar raspunde la o selectie mult mai mare de intrebari, utilizand direct Chat GPT, dar nu ar mai fi limitat contextual la scopul site-ului: cafea si ceaiuri. Modelul nu poate fi folosit momentan din cauza cheii API, care trebuie platita, dar o alternativa ar fi instalarea si folosirea unui alt LLM precum LLama.
 
 ### Flask
