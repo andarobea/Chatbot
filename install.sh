@@ -3,7 +3,7 @@
 # Create and activate a virtual environment
 
 python3.10 -m venv venv
-. venv/bin/activate
+source ./.venv/bin/activate
 
 # Install required Python packages
 pip install --upgrade pip  # Optional: Upgrade pip
