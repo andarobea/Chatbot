@@ -7,6 +7,11 @@ Constructia chatbot-ului utilizeaza PyTorch si o FNN cu 2 straturi ascunse, iar 
 ## Link github
 https://github.com/andarobea/Chatbot
 
+## Limbaje si tehnologii folosite
+
+Limbaje: Python, Javascript, Shell (Bash Scripting), CSS si HTML\
+Tehnologii: NLP, ML, JSON, framework-uri de chatbot, si algoritmi avansati pentru analiza textului
+
 ## Instalare
 
 Pentru a folosi chatbot-ul este necesara crearea unui environment si instalarea unor biblioteci si dependinte. In acest scop am creat doua script-uri bash, install.sh si run.sh. Rulati:
