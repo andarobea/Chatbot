@@ -1,103 +1,247 @@
 {
-    "intents": [
-      {
-        "tag": "greeting",
-        "patterns": [
-          "Hi",
-          "Hey",
-          "How are you",
-          "Is anyone there?",
-          "Hello",
-          "Good day"
-        ],
-        "responses": [
-          "Hey :-)",
-          "Hello, thanks for visiting",
-          "Hi there, what can I do for you?",
-          "Hi there, how can I help?"
-        ]
-      },
-      {
-        "tag": "goodbye",
-        "patterns": ["Bye", "See you later", "Goodbye"],
-        "responses": [
-          "See you later, thanks for visiting",
-          "Have a nice day",
-          "Bye! Come back again soon."
-        ]
-      },
-      {
-        "tag": "thanks",
-        "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!"],
-        "responses": ["Happy to help!", "Any time!", "My pleasure"]
-      },
-      {
-        "tag": "items",
-        "patterns": [
-          "Which items do you have?",
-          "What kinds of items are there?",
-          "What do you sell?"
-        ],
-        "responses": [
-          "We sell coffee and tea",
-          "We have coffee and tea"
-        ]
-      },
-      {
-        "tag": "payments",
-        "patterns": [
-          "Do you take credit cards?",
-          "Do you accept Mastercard?",
-          "Can I pay with Paypal?",
-          "Are you cash only?"
-        ],
-        "responses": [
-          "We accept VISA, Mastercard and Paypal",
-          "We accept most major credit cards, and Paypal"
-        ]
-      },
-      {
-        "tag": "delivery",
-        "patterns": [
-          "How long does delivery take?",
-          "How long does shipping take?",
-          "When do I get my delivery?",
-          "shipping",
-          "delivery",
-          "deliver",
-          "you ship",
-          "How is shipping?"
-        ],
-        "responses": [
-          "Delivery takes 2-4 days",
-          "Shipping takes 2-4 days"
-        ]
-      },
-      {
-        "tag": "funny",
-        "patterns": [
-          "Tell me a joke!",
-          "Tell me something funny!",
-          "Do you know a joke?"
-        ],
-        "responses": [
-          "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
-          "What did the buffalo say when his son left for college? Bison."
-        ]
-      },
-      {
-        "tag": "coffee",
-        "patterns": [
-          "What coffee do you have?",
-          "What types of coffee are there?",
-          "coffee",
-          "Tell me about coffee.",
-          "Do you make coffee"
-        ],
-        "responses": [
-          "We sell coffee and tea",
-          "We have coffee and tea"
-        ]
-      }
-    ]
-  }
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hello",
+        "Hey",
+        "Howdy",
+        "What's up?",
+        "How are you doing?",
+        "Good morning",
+        "Good evening",
+        "Anyone here?",
+        "Is someone there?"
+      ],
+      "responses": [
+        "Hey there! How can I assist you today?",
+        "Hello! Welcome, how can I help you?",
+        "Hi! Let me know if you need anything.",
+        "Hi there, how can I assist you?"
+      ]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Bye",
+        "Goodbye",
+        "See you later",
+        "Catch you later",
+        "Talk to you soon",
+        "I'm leaving",
+        "See ya!"
+      ],
+      "responses": [
+        "Goodbye! Have a great day.",
+        "Take care! Hope to see you soon.",
+        "Bye! Don't hesitate to reach out again.",
+        "Catch you later! Thanks for visiting."
+      ]
+    },
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Thanks",
+        "Thank you",
+        "Much appreciated",
+        "Thanks a lot",
+        "I owe you one",
+        "You're amazing",
+        "You're helpful"
+      ],
+      "responses": [
+        "You're welcome! Let me know if there's anything else.",
+        "Anytime! Glad to be of help.",
+        "My pleasure! Let me know if you need further assistance."
+      ]
+    },
+    {
+      "tag": "items",
+      "patterns": [
+        "What do you sell?",
+        "What items do you have?",
+        "What can I buy here?",
+        "Do you sell coffee?",
+        "What are your products?",
+        "Tell me about your items.",
+        "Do you offer tea?",
+        "sell"
+      ],
+      "responses": [
+        "We sell a variety of coffee and tea.",
+        "Our menu includes different types of coffee and tea.",
+        "We offer a selection of coffee and tea drinks."
+      ]
+    },
+    {
+      "tag": "payments",
+      "patterns": [
+        "Do you take credit cards?",
+        "Can I pay by card?",
+        "Is Paypal accepted?",
+        "Do you take cash?",
+        "What payment methods do you accept?",
+        "Can I use Mastercard here?"
+      ],
+      "responses": [
+        "We accept cash, VISA, Mastercard, and Paypal.",
+        "You can pay using most major credit cards or Paypal.",
+        "We accept various payment methods, including Mastercard, VISA, and Paypal."
+      ]
+    },
+    {
+      "tag": "delivery",
+      "patterns": [
+        "How long does shipping take?",
+        "What is your delivery time?",
+        "When will my order arrive?",
+        "How is the shipping process?",
+        "Do you deliver?",
+        "Is delivery available?",
+        "When will I receive my items?",
+        "shipping",
+        "delivery"
+      ],
+      "responses": [
+        "Delivery usually takes 2-4 days.",
+        "Shipping times are typically 2-4 business days.",
+        "Your order should arrive within 2-4 days."
+      ]
+    },
+    {
+      "tag": "funny",
+      "patterns": [
+        "Tell me a joke",
+        "Do you know a funny joke?",
+        "Make me laugh",
+        "Say something funny",
+        "Do you have any jokes?"
+      ],
+      "responses": [
+        "Why don't skeletons fight each other? They don't have the guts!",
+        "Why was the math book sad? It had too many problems.",
+        "I'm reading a book on anti-gravity. It's impossible to put down!"
+      ]
+    },
+    {
+      "tag": "coffee",
+      "patterns": [
+        "What types of coffee do you offer?",
+        "Tell me about coffee",
+        "What is your coffee menu?",
+        "Give me coffee options",
+        "Do you serve coffee?",
+        "Tell me the types of coffee available",
+        "List your coffee drinks",
+        "coffee"
+      ],
+      "responses": [
+        "We offer a wide variety of coffee drinks, including espresso, americano, macchiato, cappuccino, flat white, cafe latte, and red eye.",
+        "Our coffee menu includes options like espresso, latte, and cappuccino, among others.",
+        "From creamy lattes to strong espressos, we have something for every coffee lover."
+      ]
+    },
+    {
+      "tag": "espresso",
+      "patterns": [
+        "What is espresso?",
+        "Tell me about espresso",
+        "Can you explain espresso?",
+        "Describe espresso",
+        "Espresso details",
+        "espresso"
+      ],
+      "responses": [
+        "Espresso is a concentrated coffee shot, about 1 oz., known for its bold flavor and aroma.",
+        "An espresso is a highly concentrated coffee served in small shots. It's the base for many other drinks."
+      ]
+    },
+    {
+      "tag": "latte",
+      "patterns": [
+        "What is a latte?",
+        "Tell me about cafe latte",
+        "Describe a latte",
+        "What is cafe latte?",
+        "Latte details",
+        "latte"
+      ],
+      "responses": [
+        "A latte is a creamy coffee made with espresso and steamed milk, often flavored with syrups.",
+        "Cafe lattes are coffee drinks with a smooth texture due to the steamed milk, making them a popular choice."
+      ]
+    },
+    {
+      "tag": "americano",
+      "patterns": [
+        "What is an americano?",
+        "Describe americano",
+        "Tell me about americano",
+        "How is americano made?",
+        "Americano details",
+        "americano"
+      ],
+      "responses": [
+        "An americano is espresso diluted with water, creating a milder flavor while keeping its caffeine punch.",
+        "The americano, thought to originate in WWII, is made by adding water to espresso for a longer drink."
+      ]
+    },
+    {
+      "tag": "macchiato",
+      "patterns": [
+        "What is a macchiato?",
+        "Tell me about macchiato",
+        "Describe a macchiato",
+        "How is macchiato made?",
+        "macchiato"
+      ],
+      "responses": [
+        "A macchiato is an espresso marked with a small amount of steamed milk. It offers a bold coffee flavor with a touch of creaminess.",
+        "The word macchiato means 'stain,' referring to the mark of milk on the espresso."
+      ]
+    },
+    {
+      "tag": "cappuccino",
+      "patterns": [
+        "What is a cappuccino?",
+        "Tell me about cappuccino",
+        "Describe a cappuccino",
+        "How is cappuccino made?",
+        "cappuccino"
+      ],
+      "responses": [
+        "A cappuccino is a creamy coffee drink with equal parts espresso, steamed milk, and foam, often topped with cocoa powder.",
+        "Known for its rich foam layer, cappuccino is an indulgent and comforting coffee drink."
+      ]
+    },
+    {
+      "tag": "flat_white",
+      "patterns": [
+        "What is a flat white?",
+        "Tell me about flat white",
+        "Describe a flat white",
+        "How is flat white made?",
+        "flat white"
+      ],
+      "responses": [
+        "A flat white is similar to a cappuccino but without the foam layer. It uses velvety steamed milk for a creamy texture.",
+        "Originating from Australia and New Zealand, the flat white offers a smooth coffee experience."
+      ]
+    },
+    {
+      "tag": "red_eye",
+      "patterns": [
+        "What is a red eye?",
+        "Tell me about red eye",
+        "Describe a red eye",
+        "How is red eye made?",
+        "red eye"
+      ],
+      "responses": [
+        "A red eye is a strong coffee drink made by adding a shot of espresso to a regular cup of coffee for an extra caffeine boost.",
+        "The purpose of a red eye is to give you a serious energy kick by combining coffee and espresso."
+      ]
+    }
+  ]
+}
