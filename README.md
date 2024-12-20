@@ -4,6 +4,9 @@ Proiectul de fata are ca scop implementarea unui chatbot pentru un site al unui 
 
 Constructia chatbot-ului utilizeaza PyTorch si o FNN cu 2 straturi ascunse, iar raspunsurile date se bazeaza pe contextele definite in intents.json. Pentru customizarea raspunsurilor si a scopului chatbot-ului, se poate modifica fisierul respectiv( fiecare modificare a fisierului intents.json cere apoi reluarea antrenamentului -- rulati train.py).
 
+## Link github
+https://github.com/andarobea/Chatbot
+
 ## Instalare
 
 Pentru a folosi chatbot-ul este necesara crearea unui environment si instalarea unor biblioteci si dependinte. In acest scop am creat doua script-uri bash, install.sh si run.sh. Rulati:
@@ -27,7 +30,7 @@ Pentru a folosi interfata dedicata accesati:
 
     http://127.0.0.1:5000
 
-In final rulati ctrl + z din terminal pentru a inchide sesiunea si:
+In final rulati ctrl + z / ctrl + c din terminal pentru a inchide sesiunea si:
 
     fuser -n tcp -k 5000
 
@@ -47,6 +50,7 @@ Pentru dezactivarea venv folositi:
 1. [Partea de html](#html)
 2. [Partea de css](#css)
 3. [Partea de javascript](#javascript)
+4. [Exemplu utilizare interfata](#exemplu-utilizare-interfata)
 
 ### Chatbot
 
@@ -155,3 +159,57 @@ Fluxul principal de interactiune
 - Utilizatorul poate sterge sesiuni individuale, iar aplicatia isi actualizeaza automat starea si interfata.
 
 Aceasta implementare asigura o experienta interactiva, cu persistenta datelor si integrare backend.
+
+# Exemplu utilizare interfata
+Mai jos voi exemplifica functiile interfatei chatbot-ului.
+
+Pagina principala
+![Pagina Principala](readme-images/pagina_principala.png)
+
+Light mode
+![Light mode](readme-images/light-mode-pagina-principala.png)
+
+Pagina de chat in stagiul initial
+![Pagina de chat in stagiul initial](readme-images/initial-chat.png)
+
+Conversatie
+![Conversatie](readme-images/conversatie.png)
+
+Creare chat-uri multiple
+![Creare chat-uri multiple](readme-images/creare-chaturi-multiple.png)
+
+Stergere chat
+![Stergere chat 1](readme-images/stergere-chat-1.png)
+![Stergere chat 2](readme-images/stergere-chat-2.png)
+
+Stergere chat activ
+![Stergere chat activ 1](readme-images/stergere-chat-activ-1.png)
+![Stergere chat activ 2](readme-images/stergere-chat-activ-2.png)
+
+Stergerea ultimului chat
+![Stergere last chat 1](readme-images/stergere-last-chat-1.png)
+![Stergere last chat 2](readme-images/pagina_principala.png)
+
+Light mode
+![Light mode](readme-images/light-mode.png)
+
+## Contributii Individuale
+Adi: interfata chat-ului (index.html, style.css, script.js) + openai.py, app.py<br>
+Anda: backend chatbot (train.py, nltk_utils.py, model.py, intents.json, chatterbot.py, chat.py) + scripturi (install.sh, run.sh)
+
+## Dificultati intampinate
+Adi:<br>
+- utilizare javascript
+
+Rezolvare:<br>
+- am urmarit niste tutoriale pentru a intelege conceptele necesare pentru a realiza interfata chatbot-ului
+
+<br>
+Anda:<br>
+
+- crearea modelului de antrenament
+- intelegerea functionalitatii tokenizerii si stemmingului
+- modul de functionare al unui FNN
+
+Rezolvare:<br>
+- am cautat tutoriale de implementare de modele cu FNN

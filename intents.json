@@ -61,7 +61,12 @@
         "patterns": [
           "How long does delivery take?",
           "How long does shipping take?",
-          "When do I get my delivery?"
+          "When do I get my delivery?",
+          "shipping",
+          "delivery",
+          "deliver",
+          "you ship",
+          "How is shipping?"
         ],
         "responses": [
           "Delivery takes 2-4 days",
@@ -78,6 +83,20 @@
         "responses": [
           "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
           "What did the buffalo say when his son left for college? Bison."
+        ]
+      },
+      {
+        "tag": "coffee",
+        "patterns": [
+          "What coffee do you have?",
+          "What types of coffee are there?",
+          "coffee",
+          "Tell me about coffee.",
+          "Do you make coffee"
+        ],
+        "responses": [
+          "We sell coffee and tea",
+          "We have coffee and tea"
         ]
       }
     ]
