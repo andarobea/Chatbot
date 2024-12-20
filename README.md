@@ -30,6 +30,8 @@ Pentru a folosi interfata dedicata accesati:
 
     http://127.0.0.1:5000
 
+Chatbot-ul a fost antrenat pe un set in limba engleza, asa ca va trebui sa ii adresati intrebari in engleza.
+
 In final rulati ctrl + z / ctrl + c din terminal pentru a inchide sesiunea si:
 
     fuser -n tcp -k 5000
@@ -61,19 +63,24 @@ Pentru implementarea efectiva am avut nevoie de cateva fisiere:
 2. model.py: Feedforward neural network cu 2 straturi ascunse implementata cu Pytorch. Contine o clasa NeuralNet care mosteneste torch.nn.Module (clasa de baza pentru toate retelele neuronale in Python). Foloseste functia de activare relu.
 
 3. train.py: antreneaza modelul pe baza fisierului intents.json, ce contine pattern-uri, raspunsuri din care chatbot-ul poate alege randomizat (dupa caz) si tag-uri. Sunt folosite functiile definite pentru a tokeniza pattern-urile si a aplica stemming-ul, apoi alcatuind un vector care contine toate cuvintele individuale unicce (stemmed).
+
     Hyperparametri:
 
-    num_epochs: numarul de iteratii al antrenamentului (1000).
-    batch_size: marimea mini-batchurilor pentru antrenament (8).
-    learning_rate: rata pentru optimizer.
-    input_size: lungimea vectorului bag-of-words (inputul).
-    hidden_size: numar de neuroni in stratul ascuns.
-    output_size: numar de clase (tags).
+    num_epochs: numarul de iteratii al antrenamentului (1000).\
+    batch_size: marimea mini-batchurilor pentru antrenament (8).\
+    learning_rate: rata pentru optimizer.\
+    input_size: lungimea vectorului bag-of-words (inputul).\
+    hidden_size: numar de neuroni in stratul ascuns.\
+    output_size: numar de clase (tags).\
 
-    Rezulta in fisierul data.pth folosit pentru predictii.
+
+    Rezulta in fisierul data.pth folosit pentru predictii.\
     Initializeaza modelul si foloseste GPU daca este disponibil.
 
 4. chat.py: importa toate bibliotecile necesare si initializeaza toti parametri, tokenizeaza inputul si il converteste intr-o reprezentare de tip bag-of-words pe baza careia prezice tag-ul cu cea mai mare valoare (torch.max). Analizeaza intervalul de incredere prin convertirea output-ului modelului in probabilitatai si verifica daca probabilitatea prezisa depaseste 75%. Daca treshold-ul de incredere este depasit, alege un raspuns random din cele disponibile, altfel returneaza "I do not understand. Please rephrase!".
+
+\
+Observatie: pentru o mai buna precizie a raspunsurilor se poate folosi un set de antrenament mai mare.
 
 ### Chatterbot
     chatterbot.py este un model de chatbot care utilizeaza o biblioteca existenta folosita in construirea si antrenarea de chatbots. Una din incercarile nereusite de constructie.
