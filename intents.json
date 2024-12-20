@@ -40,6 +40,33 @@
       ]
     },
     {
+      "tag": "purpose",
+      "patterns": [
+        "What are you?",
+        "Who are you?",
+        "What is your purpose?",
+        "What can you do?",
+        "What can you tell me?",
+        "What do you know?"
+      ],
+      "responses": [
+        "I am a chatbot for a coffee store. Feel free to ask me anything related to coffee or our bussiness."
+      ]
+    },
+    {
+      "tag": "bussiness",
+      "patterns": [
+        "Where are you?",
+        "Where are your stores?",
+        "Where can I buy?",
+        "stores",
+        "where"
+      ],
+      "responses": [
+        "We have a few cafes in Bucharest. Search us on Google Maps for the full address. No reservation required."
+      ]
+    },
+    {
       "tag": "thanks",
       "patterns": [
         "Thanks",
